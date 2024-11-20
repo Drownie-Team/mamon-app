@@ -1,21 +1,14 @@
 import React, {useContext} from 'react';
 import {Text, View, ScrollView, StyleSheet} from 'react-native';
 
-import {formatToCurrency, GlobalContext} from '../common';
-
-export type CarouselItem = {
-  title: string;
-  balance: number;
-  color: string;
-  icon: string;
-};
+import {formatToCurrency, GlobalContext, WalletItem} from '../common';
 
 type WalletCarouselProps = {
-  items: CarouselItem[];
+  items: WalletItem[];
 };
 
 export function WalletCarousel(props: WalletCarouselProps): React.JSX.Element {
-  const {currency} = useContext(GlobalContext);
+  const { getCurrency } = useContext(GlobalContext);
 
   return (
     <View style={styles.container}>
@@ -32,13 +25,13 @@ export function WalletCarousel(props: WalletCarouselProps): React.JSX.Element {
         snapToInterval={210}
         decelerationRate="fast"
         contentContainerStyle={{paddingRight: 20}}>
-        {props.items.map((item: CarouselItem, i: number) => (
+        {props.items.map((item: WalletItem, i: number) => (
           <View
             style={[styles.carouselCard, {backgroundColor: item.color}]}
             key={i}>
             <Text style={styles.customFont}>{item.title}</Text>
             <Text style={[styles.customFont, {fontWeight: 'normal'}]}>
-              {formatToCurrency(item.balance, currency)}
+              {formatToCurrency(item.balance, getCurrency().symbol, item.balance_rate / getCurrency().rate)}
             </Text>
           </View>
         ))}

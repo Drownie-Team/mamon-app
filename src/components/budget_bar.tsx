@@ -12,19 +12,25 @@ enum intervalEnum {
 type BudgetBarProps = {
   currentExpenses: number;
   currentBudgetTotal: number;
+  budgetRate: number;
   interval?: intervalEnum;
 };
 
 export function BudgetBar(props: BudgetBarProps): React.JSX.Element {
-  const {currency} = useContext(GlobalContext);
+  const { getCurrency } = useContext(GlobalContext);
+  let currencySymbol = getCurrency().symbol;
+  let currencyRate = getCurrency().rate;
+
   let formattedCurrentExpense = formatToCurrency(
     props.currentExpenses,
-    currency,
+    currencySymbol,
+    props.budgetRate / currencyRate,
   );
 
   let formattedCurrentBudgetTotal = formatToCurrency(
     props.currentBudgetTotal,
-    currency,
+    currencySymbol,
+    props.budgetRate / currencyRate,
   );
 
   let calculatePercentage = props.currentExpenses / props.currentBudgetTotal;

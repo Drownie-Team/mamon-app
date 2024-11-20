@@ -6,10 +6,11 @@ import {formatToCurrency, GlobalContext} from '../common';
 type ActionBarProps = {
   uri: string;
   total_balance: number;
+  balance_rate: number;
 };
 
 export function ActionBar(props: ActionBarProps): React.JSX.Element {
-  const {currency} = useContext(GlobalContext);
+  const { getCurrency } = useContext(GlobalContext);
 
   return (
     <View style={styles.card}>
@@ -23,7 +24,7 @@ export function ActionBar(props: ActionBarProps): React.JSX.Element {
       <View style={styles.cardBody}>
         <Text style={styles.balanceLabel}>Total Balance</Text>
         <Text style={styles.balanceAmount}>
-          {formatToCurrency(props.total_balance, currency)}
+          {formatToCurrency(props.total_balance, getCurrency().symbol, props.balance_rate / getCurrency().rate)}
         </Text>
       </View>
       <View style={styles.cardFooter}>
