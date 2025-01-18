@@ -7,7 +7,7 @@ type WalletCarouselProps = {
   items: WalletItem[];
 };
 
-export function WalletCarousel(props: WalletCarouselProps): React.JSX.Element {
+function WalletCarousel(props: WalletCarouselProps): React.JSX.Element {
   const { getCurrency } = useContext(GlobalContext);
 
   return (
@@ -88,3 +88,5 @@ const styles = StyleSheet.create({
     fontWeight: '500',
   },
 });
+
+export default WalletCarousel;

@@ -1,5 +1,5 @@
 import React, {useContext} from 'react';
-import {StyleSheet, Text, View, Image} from 'react-native';
+import {StyleSheet, Text, View, Image, TouchableOpacity} from 'react-native';
 
 import {formatToCurrency, GlobalContext} from '../common';
 
@@ -9,27 +9,32 @@ type ActionBarProps = {
   balance_rate: number;
 };
 
-export function ActionBar(props: ActionBarProps): React.JSX.Element {
+function ActionBar(props: ActionBarProps): React.JSX.Element {
   const { getCurrency } = useContext(GlobalContext);
 
   return (
     <View style={styles.card}>
       <View style={styles.cardHeader}>
+        {/* User Profile Image */}
         <Image
           //   resizeMode="cover"
           source={{uri: props.uri}}
           style={styles.image}
         />
       </View>
+
+      {/* Total Balance */}
       <View style={styles.cardBody}>
         <Text style={styles.balanceLabel}>Total Balance</Text>
         <Text style={styles.balanceAmount}>
           {formatToCurrency(props.total_balance, getCurrency().symbol, props.balance_rate / getCurrency().rate)}
         </Text>
       </View>
-      <View style={styles.cardFooter}>
-        <Text style={{fontSize: 35, fontWeight: '300', color: 'black'}}>+</Text>
-      </View>
+
+      {/* Action Add Button */}
+      <TouchableOpacity style={styles.cardFooter}>
+        <Text style={styles.addButton}>+</Text>
+      </TouchableOpacity>
     </View>
   );
 }
@@ -87,3 +92,5 @@ const styles = StyleSheet.create({
     color: 'black',
   },
 });
+
+export default ActionBar;

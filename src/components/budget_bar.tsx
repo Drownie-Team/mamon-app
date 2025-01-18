@@ -16,7 +16,7 @@ type BudgetBarProps = {
   interval?: intervalEnum;
 };
 
-export function BudgetBar(props: BudgetBarProps): React.JSX.Element {
+function BudgetBar(props: BudgetBarProps): React.JSX.Element {
   const { getCurrency } = useContext(GlobalContext);
   let currencySymbol = getCurrency().symbol;
   let currencyRate = getCurrency().rate;
@@ -113,3 +113,5 @@ const styles = StyleSheet.create({
     color: '#707070',
   },
 });
+
+export default BudgetBar;
