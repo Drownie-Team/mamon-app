@@ -1,24 +1,10 @@
-import { createContext, FC, ReactNode, useState } from 'react';
+import React, { createContext, ReactNode, useCallback, useState } from 'react';
 
 // Types
-export type NavItem = {
-  title: string;
-  icon_name: string;
-  is_active: boolean;
-  component: FC
-};
-
-export type CurrencyOption = {
-  currency: string;
-  symbol: string;
-  rate: number;
-}
-
-export type GlobalContextProps = {
-  currency: string;
-  changeCurrency: (newCurrency: string) => void;
-  getCurrency: () => CurrencyOption;
-};
+import {
+  CurrencyOption,
+  GlobalContextProps,
+} from '../common/types';
 
 export const GlobalContext = createContext<GlobalContextProps>({
   currency: '',
@@ -41,18 +27,19 @@ export const GlobalContextProvider = ({ children }: { children: ReactNode }) => 
     },
   ]);
 
-  const handleChangeCurrency = (newCurrency: string) => {
+  const handleChangeCurrency = useCallback((newCurrency: string) => {
     setCurrency(newCurrency);
-  };
+  }, []);
 
-  const getCurrency = () => {
+  const getCurrency = useCallback(() => {
     for (let currencyOption of currencyOptions) {
       if (currency === currencyOption.currency) {
         return currencyOption;
       }
     }
+
     return currencyOptions[0];
-  };
+  }, [currency, currencyOptions]);
 
   const defaultPropsValue: GlobalContextProps = {
     currency: currency,

@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {
   SafeAreaView,
   StyleSheet,
@@ -9,7 +9,7 @@ import {Colors} from 'react-native/Libraries/NewAppScreen';
 import { ActionBar, BudgetBar, WalletCarousel } from '../components';
 import { WalletItem } from '../common';
 
-export function HomePage(): React.JSX.Element {
+function HomeScreen(): React.JSX.Element {
   // TODO: nanti balikin ke setWallets
   const [wallets, _setWallets] = useState<WalletItem[]>([
     {
@@ -40,6 +40,10 @@ export function HomePage(): React.JSX.Element {
     backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
     flex: 1,
   };
+
+  useEffect(() => {
+    console.log('RENDER HOME SCREEN');
+  }, []);
 
   return (
     <SafeAreaView style={baseContainer}>
@@ -76,3 +80,6 @@ const styles = StyleSheet.create({
     gap: 15,
   },
 });
+
+
+export default HomeScreen;
