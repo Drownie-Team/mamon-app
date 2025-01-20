@@ -73,7 +73,8 @@ function BudgetBar(props: BudgetBarProps): React.JSX.Element {
 
 const styles = StyleSheet.create({
   budgetContainer: {
-    flex: 0.125,
+    height: '12.5%',
+    width: '100%',
     backgroundColor: '#FFF',
     borderRadius: 12,
     shadowColor: 'black',

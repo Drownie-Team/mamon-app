@@ -65,7 +65,7 @@ function HomeScreen(): React.JSX.Element {
 }
 
 const styles = StyleSheet.create({
-  container: { flex: 1, position: 'relative', backgroundColor: 'white' },
+  container: { flex: 1, position: 'relative', backgroundColor: '#f3f3f3' },
   content: { position: 'absolute', display: 'flex', width: '100%', height: '100%', zIndex: 100, paddingHorizontal: 15, paddingVertical: 20, gap: 15 },
 });
 

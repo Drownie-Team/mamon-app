@@ -41,7 +41,8 @@ function ActionBar(props: ActionBarProps): React.JSX.Element {
 
 const styles = StyleSheet.create({
   card: {
-    flex: 0.09,
+    height: '9%',
+    width: '100%',
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',

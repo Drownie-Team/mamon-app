@@ -42,7 +42,8 @@ function WalletCarousel(props: WalletCarouselProps): React.JSX.Element {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 0.18,
+    height: '18%',
+    width: '100%',
   },
   headerTextGroup: {
     flex: 0.25,
