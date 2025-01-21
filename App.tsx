@@ -4,6 +4,7 @@ import {NavigationContainer} from '@react-navigation/native';
 
 // Context
 import {GlobalContextProvider} from './src/common';
+import { ThemeProvider } from './src/context/theme_context';
 
 // Pages
 import MainPage from './src/pages/main_page';
@@ -16,13 +17,16 @@ const DEFAULT_STACK_OPTION: NativeStackNavigationOptions = {
 };
 
 function App(): React.JSX.Element {
+
   return (
     <NavigationContainer>
-      <GlobalContextProvider >
-        <Stack.Navigator initialRouteName="main">
-          <Stack.Screen name="main" component={MainPage} options={DEFAULT_STACK_OPTION} />
-        </Stack.Navigator>
-      </GlobalContextProvider>
+      <ThemeProvider>
+        <GlobalContextProvider >
+          <Stack.Navigator initialRouteName="main">
+            <Stack.Screen name="main" component={MainPage} options={DEFAULT_STACK_OPTION} />
+          </Stack.Navigator>
+        </GlobalContextProvider>
+      </ThemeProvider>
     </NavigationContainer>
   );
 }

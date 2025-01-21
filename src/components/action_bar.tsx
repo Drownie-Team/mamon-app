@@ -1,7 +1,9 @@
 import React, {useContext} from 'react';
-import {StyleSheet, Text, View, Image, TouchableOpacity} from 'react-native';
+import {StyleSheet, View, Image, TouchableOpacity} from 'react-native';
 
 import {formatToCurrency, GlobalContext} from '../common';
+import { useTheme } from '../context/theme_context';
+import ThemedText from './themed_text';
 
 type ActionBarProps = {
   uri: string;
@@ -11,6 +13,7 @@ type ActionBarProps = {
 
 function ActionBar(props: ActionBarProps): React.JSX.Element {
   const { getCurrency } = useContext(GlobalContext);
+  const { toggleTheme } = useTheme();
 
   return (
     <View style={styles.card}>
@@ -25,15 +28,15 @@ function ActionBar(props: ActionBarProps): React.JSX.Element {
 
       {/* Total Balance */}
       <View style={styles.cardBody}>
-        <Text style={styles.balanceLabel}>Total Balance</Text>
-        <Text style={styles.balanceAmount}>
+        <ThemedText style={styles.balanceLabel}>Total Balance</ThemedText>
+        <ThemedText style={styles.balanceAmount}>
           {formatToCurrency(props.total_balance, getCurrency().symbol, props.balance_rate / getCurrency().rate)}
-        </Text>
+        </ThemedText>
       </View>
 
       {/* Action Add Button */}
-      <TouchableOpacity style={styles.cardFooter}>
-        <Text style={styles.addButton}>+</Text>
+      <TouchableOpacity style={styles.cardFooter} onPress={() => toggleTheme()}>
+        <ThemedText style={styles.addButton}>+</ThemedText>
       </TouchableOpacity>
     </View>
   );

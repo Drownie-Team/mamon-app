@@ -7,10 +7,9 @@ import Icon from 'react-native-vector-icons/FontAwesome6';
 import type { NavItem } from '../common';
 
 // Import Screens
-import HomeScreen from '../screens/home_screen';
-import StatisticScreen from '../screens/statistic_screen';
-import WalletScreen from '../screens/wallet_screen';
-import TargetScreen from '../screens/target_screen';
+import HomeScreen from '../screens/home';
+import AnalyticScreen from '../screens/analytic';
+import PlanningScreen from '../screens/planning';
 
 const NAV_LIST: NavItem[] = [
   {
@@ -21,22 +20,16 @@ const NAV_LIST: NavItem[] = [
   },
   {
       icon_name: 'square-poll-vertical',
-      title: 'Statistics',
+      title: 'Analytic',
       is_active: false,
-      component: StatisticScreen,
+      component: AnalyticScreen,
   },
   {
-      icon_name: 'wallet',
-      title: 'Wallet',
+      icon_name: 'list-check',
+      title: 'Planning',
       is_active: false,
-      component: WalletScreen,
-  },
-  {
-      icon_name: 'trophy',
-      title: 'Target',
-      is_active: false,
-      component: TargetScreen,
-  },
+      component: PlanningScreen,
+  }
 ];
 
 const NAV_BY_TITLE = Object.fromEntries(

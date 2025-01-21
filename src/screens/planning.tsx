@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react';
-import {SafeAreaView, Text, useColorScheme, View} from 'react-native';
+import {Text, View, SafeAreaView, useColorScheme} from 'react-native';
 import { Colors } from 'react-native/Libraries/NewAppScreen';
 
-function TargetScreen(): React.JSX.Element {
+function PlanningScreen(): React.JSX.Element {
   const isDarkMode = useColorScheme() === 'dark';
   const baseContainer = {
     backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
@@ -10,16 +10,16 @@ function TargetScreen(): React.JSX.Element {
   };
 
   useEffect(() => {
-    console.log('RENDER TROPHY SCREEN');
+    console.log('RENDER Planning SCREEN');
   }, []);
 
   return (
     <SafeAreaView style={baseContainer}>
       <View>
-        <Text>Thropy</Text>
+        <Text>Wallet</Text>
       </View>
     </SafeAreaView>
   );
 }
 
-export default TargetScreen;
+export default PlanningScreen;

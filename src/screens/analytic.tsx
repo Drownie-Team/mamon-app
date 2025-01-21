@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import {SafeAreaView, Text, useColorScheme, View} from 'react-native';
 import { Colors } from 'react-native/Libraries/NewAppScreen';
 
-function StatisticScreen(): React.JSX.Element {
+function AnalyticScreen(): React.JSX.Element {
   const isDarkMode = useColorScheme() === 'dark';
   const baseContainer = {
     backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
@@ -22,4 +22,4 @@ function StatisticScreen(): React.JSX.Element {
   );
 }
 
-export default StatisticScreen;
+export default AnalyticScreen;

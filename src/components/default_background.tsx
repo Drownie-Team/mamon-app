@@ -1,12 +1,24 @@
 import React from 'react';
-import { Image, StyleSheet } from 'react-native';
+import { StyleSheet, View } from 'react-native';
+import { useTheme } from '../context/theme_context';
 
 function DefaultBackground() {
+    const { theme } = useTheme();
+
+    const defaultViewStyle = StyleSheet.flatten([styles.view, { backgroundColor: theme.primary }]);
     return (
         <>
-            <Image style={StyleSheet.flatten({width: '100%'})} source={require('../../assets/images/top_bg.png')} />
+            <View style={defaultViewStyle} />
         </>
     );
 }
+
+const styles = StyleSheet.create({
+    view: {
+        width: '100%',
+        height: '20%',
+        backgroundColor: '#85589f',
+    },
+});
 
 export default DefaultBackground;
