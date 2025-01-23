@@ -4,18 +4,24 @@ import { useColorScheme } from 'react-native';
 
 const LIGHT_THEME = {
   background: '#FFFFFF',
+  secondary_background: '#f3f3f3',
   text: '#000000',
+  inversed_text: '#FFF',
   primary: '#8357a1',
-  secondary: '#8558a0',
+  secondary: '#6541A0',
   border: '#E0E0E0',
+  inactive: 'gray',
 };
 
 const DARK_THEME = {
-  background: '#121212',
+  background: '#404040',
+  secondary_background: '#6b6a6a',
   text: '#FFFFFF',
+  inversed_text: '#000',
   primary: '#3498DB',
-  secondary: '#2ECC71',
+  secondary: '#70c6ff',
   border: '#333333',
+  inactive: '#f3f3f3',
 };
 
 const defaultContextValue = {

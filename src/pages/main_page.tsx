@@ -10,6 +10,7 @@ import type { NavItem } from '../common';
 import HomeScreen from '../screens/home';
 import AnalyticScreen from '../screens/analytic';
 import PlanningScreen from '../screens/planning';
+import { useTheme } from '../context/theme_context';
 
 const NAV_LIST: NavItem[] = [
   {
@@ -29,7 +30,7 @@ const NAV_LIST: NavItem[] = [
       title: 'Planning',
       is_active: false,
       component: PlanningScreen,
-  }
+  },
 ];
 
 const NAV_BY_TITLE = Object.fromEntries(
@@ -41,6 +42,7 @@ const renderTabBarIcon = (route: RouteProp<ParamListBase, string>, size: number,
 );
 
 const MainPage = () => {
+    const { theme } = useTheme();
     const Tab = createBottomTabNavigator();
 
     return (
@@ -49,8 +51,10 @@ const MainPage = () => {
           screenOptions={({ route }) => ({
             headerShown: false,
             tabBarIcon: ({ color, size }) => renderTabBarIcon(route, size, color),
-            tabBarActiveTintColor: '#6541A0',
-            tabBarInactiveTintColor: 'gray',
+            tabBarActiveTintColor: theme.secondary,
+            tabBarInactiveTintColor: theme.inactive,
+            tabBarActiveBackgroundColor: theme.background,
+            tabBarInactiveBackgroundColor: theme.background,
             lazy: true,
           })}
         >

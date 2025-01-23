@@ -1,7 +1,8 @@
 import React, {useContext} from 'react';
-import {Text, View, ScrollView, StyleSheet} from 'react-native';
+import {View, ScrollView, StyleSheet} from 'react-native';
 
 import {formatToCurrency, GlobalContext, WalletItem} from '../common';
+import ThemedText from './themed/themed_text';
 
 type WalletCarouselProps = {
   items: WalletItem[];
@@ -13,8 +14,8 @@ function WalletCarousel(props: WalletCarouselProps): React.JSX.Element {
   return (
     <View style={styles.container}>
       <View style={styles.headerTextGroup}>
-        <Text style={styles.titleText}>Wallets</Text>
-        <Text style={styles.moreText}>See More</Text>
+        <ThemedText style={styles.titleText}>Wallets</ThemedText>
+        <ThemedText style={styles.moreText}>See More</ThemedText>
       </View>
       <ScrollView
         showsHorizontalScrollIndicator={false}
@@ -24,15 +25,15 @@ function WalletCarousel(props: WalletCarouselProps): React.JSX.Element {
         snapToAlignment="center"
         snapToInterval={210}
         decelerationRate="fast"
-        contentContainerStyle={{paddingRight: 20}}>
+        contentContainerStyle={StyleSheet.flatten({paddingRight: 20})}>
         {props.items.map((item: WalletItem, i: number) => (
           <View
             style={[styles.carouselCard, {backgroundColor: item.color}]}
             key={i}>
-            <Text style={styles.customFont}>{item.title}</Text>
-            <Text style={[styles.customFont, {fontWeight: 'normal'}]}>
+            <ThemedText style={styles.customFont}>{item.title}</ThemedText>
+            <ThemedText style={StyleSheet.flatten([styles.customFont, {fontWeight: 'normal'}])}>
               {formatToCurrency(item.balance, getCurrency().symbol, item.balance_rate / getCurrency().rate)}
-            </Text>
+            </ThemedText>
           </View>
         ))}
       </ScrollView>
@@ -57,11 +58,12 @@ const styles = StyleSheet.create({
   titleText: {
     fontSize: 20,
     fontWeight: '500',
-    color: '#242424',
+    // color: '#242424',
   },
   moreText: {
     fontSize: 13,
-    color: '#489FCD',
+    fontWeight: '500',
+    // color: '#489FCD',
   },
   content: {
     flex: 0.75,
@@ -71,13 +73,13 @@ const styles = StyleSheet.create({
   carouselCard: {
     height: '100%',
     width: 200,
-    backgroundColor: 'gray',
+    // backgroundColor: 'gray',
     borderRadius: 12,
     padding: 10,
     marginRight: 8,
-    color: '#242424',
+    // color: '#242424',
 
-    shadowColor: '#000', // Shadow color
+    // shadowColor: '#000', // Shadow color
     shadowOffset: {width: 0, height: 2}, // Shadow spread direction
     shadowOpacity: 0.2, // How transparent the shadow is
     shadowRadius: 3.84, // How blurry the shadow is
@@ -85,7 +87,7 @@ const styles = StyleSheet.create({
     elevation: 5,
   },
   customFont: {
-    color: '#242424',
+    // color: '#242424',
     fontWeight: '500',
   },
 });

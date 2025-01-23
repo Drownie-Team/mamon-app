@@ -3,6 +3,7 @@ import {View, Text, StyleSheet} from 'react-native';
 import * as Progress from 'react-native-progress';
 
 import {formatToCurrency, GlobalContext} from '../common';
+import ThemedText from './themed/themed_text';
 
 enum intervalEnum {
   monthly = 0,
@@ -43,9 +44,9 @@ function BudgetBar(props: BudgetBarProps): React.JSX.Element {
       <View style={styles.budgetContent}>
         <View style={styles.budgetTextGroup}>
           <Text style={styles.totalBudgetText}>
-            <Text style={styles.currentBudgetText}>
+            <ThemedText style={styles.currentBudgetText}>
               {formattedCurrentExpense}
-            </Text>{' '}
+            </ThemedText>{' '}
             / {formattedCurrentBudgetTotal}
           </Text>
           <Text style={{color: '#707070', fontSize: 14}}>
@@ -107,7 +108,7 @@ const styles = StyleSheet.create({
   currentBudgetText: {
     fontSize: 16,
     fontWeight: '600',
-    color: '#2836B5',
+    // color: '#2836B5',
   },
   totalBudgetText: {
     fontSize: 14,

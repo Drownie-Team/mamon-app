@@ -14,6 +14,7 @@ import ActionBar from '../components/action_bar';
 import BudgetBar from '../components/budget_bar';
 import WalletCarousel from '../components/wallet_carousel';
 import { TransactionBar } from '../components/transactions_bar';
+import { useTheme } from '../context/theme_context';
 
 const wallets: WalletItem[] = [
   {
@@ -40,12 +41,14 @@ const wallets: WalletItem[] = [
 ];
 
 function HomeScreen(): React.JSX.Element {
+  const { theme } = useTheme();
+
   useEffect(() => {
     console.log('RENDER HOME SCREEN');
   }, []);
 
   return (
-    <SafeAreaView style={styles.container}>
+    <SafeAreaView style={StyleSheet.flatten([styles.container, { backgroundColor: theme.secondary_background }])}>
       <DefaultBackground />
 
       {/* Content */}

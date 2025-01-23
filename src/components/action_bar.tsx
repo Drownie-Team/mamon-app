@@ -1,9 +1,10 @@
 import React, {useContext} from 'react';
-import {StyleSheet, View, Image, TouchableOpacity} from 'react-native';
+import {StyleSheet, View, Image} from 'react-native';
 
 import {formatToCurrency, GlobalContext} from '../common';
 import { useTheme } from '../context/theme_context';
-import ThemedText from './themed_text';
+import ThemedText from './themed/themed_text';
+import ThemedTouchableOpacity from './themed/themed_touchable_entity';
 
 type ActionBarProps = {
   uri: string;
@@ -13,11 +14,11 @@ type ActionBarProps = {
 
 function ActionBar(props: ActionBarProps): React.JSX.Element {
   const { getCurrency } = useContext(GlobalContext);
-  const { toggleTheme } = useTheme();
+  const { toggleTheme, theme } = useTheme();
 
   return (
     <View style={styles.card}>
-      <View style={styles.cardHeader}>
+      <View style={StyleSheet.flatten([styles.cardHeader, { borderColor: theme.border }])}>
         {/* User Profile Image */}
         <Image
           //   resizeMode="cover"
@@ -28,16 +29,16 @@ function ActionBar(props: ActionBarProps): React.JSX.Element {
 
       {/* Total Balance */}
       <View style={styles.cardBody}>
-        <ThemedText style={styles.balanceLabel}>Total Balance</ThemedText>
-        <ThemedText style={styles.balanceAmount}>
+        <ThemedText inverted style={styles.balanceLabel}>Total Balance</ThemedText>
+        <ThemedText inverted style={styles.balanceAmount}>
           {formatToCurrency(props.total_balance, getCurrency().symbol, props.balance_rate / getCurrency().rate)}
         </ThemedText>
       </View>
 
       {/* Action Add Button */}
-      <TouchableOpacity style={styles.cardFooter} onPress={() => toggleTheme()}>
+      <ThemedTouchableOpacity style={styles.cardFooter} onPress={() => toggleTheme()}>
         <ThemedText style={styles.addButton}>+</ThemedText>
-      </TouchableOpacity>
+      </ThemedTouchableOpacity>
     </View>
   );
 }
@@ -87,13 +88,13 @@ const styles = StyleSheet.create({
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: 'white',
+    // backgroundColor: 'white',
     borderRadius: 12,
   },
   addButton: {
     fontSize: 35,
     fontWeight: '300',
-    color: 'black',
+    // color: 'black',
   },
 });
 
